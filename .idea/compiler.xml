@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="project-using-thymeleaf" target="15" />
+      <module name="project-using-thymeleaf" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
