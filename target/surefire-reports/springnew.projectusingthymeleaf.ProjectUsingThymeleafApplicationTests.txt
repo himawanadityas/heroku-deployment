@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: springnew.projectusingthymeleaf.ProjectUsingThymeleafApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 21.663 s - in springnew.projectusingthymeleaf.ProjectUsingThymeleafApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 19.786 s - in springnew.projectusingthymeleaf.ProjectUsingThymeleafApplicationTests
