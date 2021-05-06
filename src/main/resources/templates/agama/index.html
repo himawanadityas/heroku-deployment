@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html layout:decorate="~{base}"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+
+<div class="row mb-2" layout:fragment="content-header">
+    <div class="col-sm-6">
+        <h1 class="m-0 text-dark"> Agama</h1>
+    </div>
+    <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Agama</a></li>
+            <li class="breadcrumb-item active">Kelola</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row" layout:fragment="content-body">
+
+
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">List Agama</h3>
+                <div class="float-right">
+                    <button class="btn btn-success" id="btn-tambah-mahasiswa"><span>+</span></button>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive">
+                <table class="table table-hover nowrap" id="tableBiodata"
+                       style="width:100%"></table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.col -->
+
+
+    <div class="modal fade" id="modal-agama">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Form Mahasiswa</h4>
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <form id="form-biodata" role="form">
+                        <div class="card-header"><span>Agama</span>
+                        </div>
+
+                        <input id="id" name="id" type="hidden"/>
+                        <input id="idDetail" name="idDetail" type="hidden">
+
+                        <div class="form-group">
+                            <label>Agama </label>
+                            <input class="form-control" id="agama" name="agama"
+                                   placeholder="Agama" required type="text">
+                        </div>
+                        <div class="form-group">
+                            <label>Foto</label>
+                            <input type="file" class="form-control" id="fileImage" name="file"
+                                   accept="image/png, image/jpeg">
+                        </div>
+
+
+
+                    </form>
+
+                </div>
+
+
+                <div class="modal-footer justify-content-between">
+                    <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+                    <button class="btn btn-primary" id="btn-save-agama" type="button">Save</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade" id="delete-agama">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Delete Confirmation</h4>
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div><span>Are you sure to deleteing this ?</span></div>
+
+                </div>
+
+                <div class="modal-footer justify-content-between">
+                    <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+                    <button class="btn btn-danger" id="btn-delete-agama" type="button">Delete</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+</div>
+
+
+<th:block layout:fragment="add-scripts">
+    <script th:src="@{/assets/js/agama.js}"></script>
+    <script th:src="@{/assets/js/parsley.min.js}"></script>
+    <script th:src="@{/assets/js/default.js}"></script>
+
+    <script>
+        tableBiodata.create();
+
+        $('#btn-cari-pasien').click(function () {
+            var tanggalLahir = new Date($('#tanggalLahir').val()) * 1;
+            tableKelolaPasien.create();
+        });
+
+        $('#btn-tambah-mahasiswa').click(function () {
+            formBiodata.resetForm();
+            $('#modal-agama').modal('show')
+        });
+
+        $('#btn-save-agama').click(function () {
+            formBiodata.saveForm();
+        });
+
+        $('#btn-delete-agama').click(function () {
+            deleteData.deleteDataRow();
+        });
+
+    </script>
+   <script>
+       $('#btn-save-agama').click(function (event) {
+           event.preventDefault();
+
+           // Get form
+           var form = $('#form-biodata')[0];
+
+           // Create an FormData object
+           var data = new FormData(form);
+
+           // If you want to add an extra field for the FormData
+           // data.append('transaksi', new Blob([JSON.stringify({
+           //     "idUser": document.getElementById("nama").value,
+           //     "alamat": document.getElementById("alamat").value
+           // })], {
+           //     type: "application/json"
+           // }));
+
+           // disabled the submit button
+           $("#btn-save-agama").prop("disabled", true);
+
+           $.ajax({
+               type: "POST",
+               enctype: 'multipart/form-data',
+               url: "api/agama/upload",
+               data: data,
+               processData: false,
+               contentType: false,
+               cache: false,
+               timeout: 600000,
+               success: function (data) {
+
+                   // $("#result").text(data);
+                   console.log("SUCCESS : ", data);
+                   $("#btn-save-agama").prop("disabled", false);
+                   tableTransaksi.create();
+                   $('#modal-biodata').modal('hide')
+
+               },
+               error: function (e) {
+
+                   $("#result").text(e.responseText);
+                   console.log("ERROR : ", e);
+                   $("#btn-save-agama").prop("disabled", false);
+
+               }
+           });
+           // formTransaksi.saveForm()
+       });
+   </script>
+</th:block>
+
+</html>
+
+

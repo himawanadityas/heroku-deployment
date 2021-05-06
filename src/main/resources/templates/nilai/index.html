@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html layout:decorate="~{base}"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+
+<div class="row mb-2" layout:fragment="content-header">
+    <div class="col-sm-6">
+        <h1 class="m-0 text-dark">Nilai</h1>
+    </div>
+    <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Nilai</a></li>
+            <li class="breadcrumb-item active">Kelola</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row" layout:fragment="content-body">
+
+
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">List Nilai Mahasiswa</h3>
+                <button class="float-right btn-success" id="btn-tambah-nilai">Tambah</button>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive">
+                <table class="table table-striped table-bordered table-hover nowrap" id="table-nilai"
+                       style="width:100%"></table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.col -->
+
+
+    <div class="modal fade" id="modal-nilai">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Form Nilai</h4>
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="card-header"><span>Nilai</span>
+                    </div>
+                    <form id="form" role="form">
+                        <input id="id" name="id" type="hidden"/>
+
+                        <input id="idDetail" name="idDetail" type="hidden">
+
+                        <div class="form-group">
+                            <label>Nama Mahasiswa: </label>
+                            <select id="mahasiswa" name="idMahasiswa" class="form-control">
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Ujian : </label><br>
+                            <select id="ujian" name="idUjian" class="form-control">
+                            </select>
+
+
+                        </div>
+                        <div class="form-group">
+                            <label>Nilai : </label>
+                            <input class="form-control" id="nilai" name="nilai"
+                                   placeholder="Nilai" required type="number">
+                        </div>
+
+                    </form>
+
+                </div>
+
+
+                <div class="modal-footer justify-content-between">
+                    <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+                    <button class="btn btn-primary" id="btn-save-nilai" type="button">Save</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade" id="delete-nilai">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Delete Confirmation</h4>
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div><span>Are you sure to deleteing this ?</span></div>
+
+                </div>
+
+                <div class="modal-footer justify-content-between">
+                    <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+                    <button class="btn btn-danger" id="btn-delete-nilai" type="button">Delete</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+</div>
+
+
+<th:block layout:fragment="add-scripts">
+    <script th:src="@{/assets/js/nilai.js}"></script>
+    <script th:src="@{/assets/js/parsley.min.js}"></script>
+    <script th:src="@{/assets/js/default.js}"></script>
+
+    <script>
+        tableBiodata.create();
+
+        $('#btn-cari-pasien').click(function () {
+            var tanggalLahir = new Date($('#tanggalLahir').val()) * 1;
+            tableKelolaPasien.create();
+        });
+
+        $('#btn-tambah-nilai').click(function () {
+            formBiodata.resetForm();
+            $('#modal-nilai').modal('show')
+        });
+
+        $('#btn-save-nilai').click(function () {
+            formBiodata.saveForm();
+        });
+
+        $('#btn-delete-nilai').click(function () {
+            deleteData.deleteDataRow();
+        });
+
+    </script>
+
+    <script>
+        $.ajax({
+            url: 'api/mahasiswa',
+            method: 'get',
+            contentType: 'application/json',
+            success: function (data, status, xhr) {
+                console.log(xhr.status);
+                if (xhr.status == 200 || xhr.status == 201) {
+                    var dat;
+                    for (var i = 0; i < data.length; i++) {
+                        dat += "<option value='" + data[i].id + "'>" + data[i].nama + "</option>";
+                    }
+                    $('#mahasiswa').append(dat);
+                }
+            }
+        });
+    </script>
+
+    <script>
+        $.ajax({
+            url: 'api/ujian',
+            method: 'get',
+            contentType: 'application/json',
+            success: function (data, status, xhr) {
+                console.log(xhr.status);
+                if (xhr.status == 200 || xhr.status == 201) {
+                    var dat;
+                    for (var i = 0; i < data.length; i++) {
+                        dat += "<option value='" + data[i].id + "'>" + data[i].namaUjian + "</option>";
+                    }
+                    $('#ujian').append(dat);
+                }
+            }
+        });
+    </script>
+</th:block>
+
+</html>
+
+

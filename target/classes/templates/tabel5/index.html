@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html layout:decorate="~{base}"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+
+<div class="row mb-2" layout:fragment="content-header">
+    <div class="col-sm-6">
+        <h1>INFORMATION TABLE</h1>
+    </div>
+    <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">home</a></li>
+            <li class="breadcrumb-item active">information</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row mb-2" layout:fragment="content-body">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="card card-dark">
+                    <div class="card-header">
+                        <h3 class="card-title">Information Result</h3>
+                    </div>
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover text-nowrap" id="table-data">
+                            <thead>
+                            <tr>
+                                <th>Fields</th>
+                                <th>Information</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card-footer float-right">
+                <button type="button" class="btn btn-dark">
+                    <a href="tugas5" style="color:white">Go Back!</a>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<th:block layout:fragment="add-scripts">
+    <script th:src="@{/assets/plugins/chart.js/Chart.min.js}"></script>
+    <script th:src="@{/assets/dist/js/demo.js}"></script>
+    <script th:src="@{/assets/dist/js/pages/dashboard3.js}"></script>
+    <script>
+        /*
+        $(function () {
+            bsCustomFileInput.init();
+        });
+        */
+        $(function () {
+            var x = window.location.search;
+            const url = new URLSearchParams(x);
+            const keys = url.keys();
+            const values = url.values();
+            var keyArray = [];
+            var valArray = [];
+            for (const key of keys) {
+                keyArray.push(key);
+            }
+            for (const value of values) {
+                valArray.push(value);
+            }
+            for (var i = 0; i < keyArray.length; i++) {
+                $('#table-data tbody').append('<tr>' + '<td>' + keyArray[i] + '</td>' + '<td>' + valArray[i] + '</td>' + '</tr>');
+            }
+            console.log(keyArray);
+            console.log(valArray);
+        });
+
+
+
+    </script>b
+</th:block>
+
+</html>

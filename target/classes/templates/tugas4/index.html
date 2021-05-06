@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html layout:decorate="~{base}"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+
+<div class="row mb-2" layout:fragment="content-header">
+    <div class="col-sm-6">
+        <h1>ABOUT YOU</h1>
+    </div>
+    <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">home</a></li>
+            <li class="breadcrumb-item active">about you</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row" layout:fragment="content-body">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column personal identity form-->
+            <div class="col">
+                <!-- general form elements -->
+                <div class="card card-dark">
+                    <div class="card-header">
+                        <h3 class="card-title">Biodata (Yourself)</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="mynames">Names</label>
+                                <input type="text" class="form-control" id="mynames" placeholder="Your Full Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="birthdate">Birth Date</label>
+                                <input type="date" class="form-control" id="birthdate">
+                            </div>
+                            <div class="form-group">
+                                <label for="wa">Whatsapp</label>
+                                <input type="tel" class="form-control" id="wa" placeholder="Your whatsapp number">
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Address</label>
+                                <input type="text" class="form-control" id="address" placeholder="Your address">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">E-mail</label>
+                                <input type="email" class="form-control" id="email" placeholder="Your e-mail">
+                            </div>
+                            <div>
+                                <label>Gender</label><br>
+                                <div class="form-group">
+                                    <input type="radio" name="gender" value="Male">
+                                    <label>Male</label><br>
+                                    <input type="radio" name="gender" value="Female">
+                                    <label>Female</label><br>
+                                </div>
+                            </div>
+                            <div class="card-group">
+                                <label>Religion : </label><br>
+                                <select id="religion" name="religion" class="form-control">
+                                    <option value="Islam">Islam</option>
+                                    <option value="Protestan">Protestan</option>
+                                    <option value="Katholik">Katholik</option>
+                                    <option value="Buddha">Buddha</option>
+                                    <option value="Hindu">Hindu</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputFile">Curriculum Vitae</label>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="exampleInputFile">
+                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">Upload</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div class="form-check">
+                              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                            </div>-->
+                        </div>
+                        <!-- /.card-body -->
+
+                        <!--   <div class="card-footer">
+                             <button type="button" class="btn btn-dark" id="submit-1">Submit</button>
+                           </div>-->
+
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- right column parent identity form-->
+            <div class="col">
+                <!-- general form elements -->
+                <div class="card card-dark">
+                    <div class="card-header">
+                        <h3 class="card-title">Biodata (Parents)</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="fathernames">Father's Name</label>
+                                <input type="text" class="form-control" id="fathernames" placeholder="Your Father Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="mothernames">Mother's Name</label>
+                                <input type="text" class="form-control" id="mothernames" placeholder="Your Father Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="fatherwork">Father's Job</label>
+                                <input type="text" class="form-control" id="fatherwork" placeholder="Your Father Job">
+                            </div>
+                            <div class="form-group">
+                                <label for="motherwork">Mother's Job</label>
+                                <input type="text" class="form-control" id="motherwork" placeholder="Your Mother Job">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="parentAddress">Address</label>
+                                <input type="text" class="form-control" id="parentAddress"
+                                       placeholder="Your parent address">
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck2">
+                                <label class="form-check-label" for="exampleCheck2">Check me out</label>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#table-modal"
+                                    id="submit-2">
+                                Save!
+                            </button>
+                            <button type="button" class="btn btn-dark"
+                                    id="get-data">
+                                Get data!
+                            </button>
+                            <!--
+                            <button type="button" class="btn btn-dark" id="submit-2">Submit</button>
+                            -->
+                        </div>
+
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="modal" id="table-modal">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Information Result</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card card-dark">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Your Information</h3>
+                                    </div>
+                                    <div class="card-body table-responsive p-0">
+                                        <table class='table' id="table-data">
+                                            <!--
+                                              <thead>
+                                              <tr>
+                                                  <th>Name</th>
+                                                  <th>Birthdate</th>
+                                                  <th>Address</th>
+                                                  <th>E-mail</th>
+                                                  <th>Whatsapp</th>
+                                                  <th>Gender</th>
+                                                  <th>Religion</th>
+                                                  <th>Father</th>
+                                                  <th>Mother</th>
+                                                  <th>Father's Job</th>
+                                                  <th>Mother's Job</th>
+                                                  <th>Parents Address</th>
+                                              </tr>
+                                              </thead>
+                                              <tbody>
+                                              </tbody>
+                                              -->
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- information result table
+        <div class="row">
+          <div class="col">
+            <div class="card card-dark">
+              <div class="card-header">
+                <h3 class="card-title">Information Result</h3>
+              </div>
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap" id="table-data">
+                  <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Birthdate</th>
+                    <th>Address</th>
+                    <th>E-mail</th>
+                    <th>Whatsapp</th>
+                    <th>Gender</th>
+                    <th>Religion</th>
+                    <th>Father</th>
+                    <th>Mother</th>
+                    <th>Father's Job</th>
+                    <th>Mother's Job</th>
+                    <th>Parents Address</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        -->
+    </div>
+</div>
+
+<th:block layout:fragment="add-scripts">
+    <script th:src="@{/assets/plugins/chart.js/Chart.min.js}"></script>
+    <script th:src="@{/assets/dist/js/demo.js}"></script>
+    <script th:src="@{/assets/dist/js/pages/dashboard3.js}"></script>
+    <script th:src="@{/assets/plugins/datatables/jquery.dataTables.js}"></script>
+    <script th:src="@{/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.js}"></script>
+    <!--
+     <script>
+         $('#submit-2').click(function(){
+             var name = $('#mynames').val();
+             var birthdate = $('#birthdate').val();
+             var address = $('#address').val();
+             var wa = $('#wa').val();
+             var gender = $("input[name='gender']:checked").val();
+             var email = $('#email').val();
+             var religion = $('#religion').val();
+             var address = $('#address').val();
+
+             var father = $('#fathernames').val();
+             var mother = $('#mothernames').val();
+             var fatherjob = $('#fatherwork').val();
+             var motherjob = $('#motherwork').val();
+             var parentaddress = $('#parentAddress').val();
+
+             $('#table-data tbody').append('<td>' + name + '</td>');
+             $('#table-data tbody').append('<td>' + birthdate + '</td>');
+             $('#table-data tbody').append('<td>' + address + '</td>');
+             $('#table-data tbody').append('<td>' + email + '</td>');
+             $('#table-data tbody').append('<td>' + wa + '</td>');
+             $('#table-data tbody').append('<td>' + gender + '</td>');
+             $('#table-data tbody').append('<td>' + religion + '</td>');
+
+             $('#table-data tbody').append('<td>' + father + '</td>');
+             $('#table-data tbody').append('<td>' + mother + '</td>');
+             $('#table-data tbody').append('<td>' + fatherjob + '</td>');
+             $('#table-data tbody').append('<td>' + motherjob + '</td>');
+             $('#table-data tbody').append('<td>' + parentaddress + '</td>');
+             $('#table-data tbody').append('<td>' + '<button></button>' + '</td>');
+             $('#table-data tbody').append('<tr>' + '</tr>');
+         });
+     </script>
+     -->
+    <script>
+        createTable();
+
+        function createTable() {
+            $.ajax({
+                url: '/api/biodata/all',
+                method: 'get',
+                contentType: 'application/json',
+                success: function (res, status, xhr) {
+                    if (xhr.status == 200 || xhr.status == 201) {
+                        $('#table-data').DataTable({
+                            data: res,
+                            columns: [
+                                {
+                                    title: "Name",
+                                    data: "nama"
+                                },
+                                {
+                                    title: "Address",
+                                    data: "address"
+                                },
+                                {
+                                    title: "E-mail",
+                                    data: "email"
+                                },
+                                {
+                                    title: "Gender",
+                                    data: "gender"
+                                }
+                            ],
+                            "scrollX": true
+                        });
+
+                    } else {
+
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+        }
+
+        $('#get-data').click(function () {
+            $.ajax({
+                url: '/api/biodata',
+                method: 'get',
+                contentType: 'application/json',
+                success: function (res, status, xhr) {
+                    $('#mynames').val(res.nama);
+                    $("#address").val(res.address);
+                    $('#email').val(res.email);
+                    $('#birthdate').val(res.ttl);
+                    if (res.gender == "Male") {
+                        $('input[type=radio][value="Male"]').prop('checked', true);
+                    } else {
+                        $('input[type=radio][value="Female"]').prop('checked', true);
+                    }
+                    if (res.religion == "Islam") {
+                        $('option[value="Islam"]').prop('selected', true);
+                    } else if (res.religion == "Protestan") {
+                        $('option[value="Protestan"]').prop('selected', true);
+                    } else if (res.religion == "Katholik") {
+                        $('option[value="Katholik"]').prop('selected', true);
+                    } else if (res.religion == "Buddha") {
+                        $('option[value="Buddha"]').prop('selected', true);
+                    } else {
+                        $('option[value="Hindu"]').prop('selected', true);
+                    }
+                    $('#fathernames').val(res.parentBiodata.father);
+                    $('#mothernames').val(res.parentBiodata.mother);
+                    $('#fatherwork').val(res.parentBiodata.fatherJob);
+                    $('#motherwork').val(res.parentBiodata.motherJob);
+
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+        })
+
+
+    </script>
+
+</th:block>
+
+</html>

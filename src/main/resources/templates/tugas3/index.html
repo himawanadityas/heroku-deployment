@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html layout:decorate="~{base}"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+
+<div class="row mb-2" layout:fragment="content-header">
+    <div class="col-sm-6">
+        <h1>ABOUT YOU</h1>
+    </div>
+    <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">home</a></li>
+            <li class="breadcrumb-item active">about you</li>
+        </ol>
+    </div>
+</div>
+<div class="row mb-2" layout:fragment="content-body">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+
+                <!-- left column -->
+                <div class="col-md-6">
+
+                    <!--general form elements -->
+                    <div class="card card-primary">
+
+                        <div class="card-header">
+                            <h3 class="card-title">Personal Data</h3>
+                        </div>
+                        <!-- /.card-header -->
+
+                        <!-- form start -->
+                        <form id="my-form">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Name : </label>
+                                    <input type="text" class="form-control" placeholder="Enter your name here" id="myname">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Birth Date : </label>
+                                    <input type="date" class="form-control" placeholder="Enter your birth date here" id="mybirthdate">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Gender : </label>
+                                    <div class="custom-control custom-radio" id="gender">
+                                        <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio"
+                                               value="Male">
+                                        <label for="customRadio1" class="custom-control-label">Male</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input class="custom-control-input" type="radio" id="customRadio2" name="customRadio"
+                                               value="Female" checked>
+                                        <label for="customRadio2" class="custom-control-label">Female</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Address : </label>
+                                    <input type="text" class="form-control" placeholder="Enter your address here" id="myaddress">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Religion : </label>
+                                    <select class="form-control" name="agama" id="myreligion">
+                                        <option value=""></option>
+                                        <option value="Islam">Islam</option>
+                                        <option value="Katolik">Katolik</option>
+                                        <option value="Kristen">Kristen</option>
+                                        <option value="Hindu">Hindu</option>
+                                        <option value="Buddha">Buddha</option>
+                                        <option value="Kong Hu Chu">Kong Hu Chu</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Status : </label>
+                                    <select class="form-control" name="status" id="mystatus">
+                                        <option value=""></option>
+                                        <option value="Single">Single</option>
+                                        <option value="Married">Married</option>
+                                    </select>
+                                </div>
+
+                                <h5>Email : </h5>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    </div>
+                                    <input type="email" class="form-control" placeholder="Email" id="myemail">
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </form>
+                    </div>
+                </div>
+
+                <!--right column-->
+                <div class="col-md-6">
+
+                    <!--general form elements -->
+                    <div class="card card-secondary">
+
+                        <div class="card-header">
+                            <h3 class="card-title">Parent's Data</h3>
+                        </div>
+                        <!-- /.card-header -->
+
+                        <!-- form start -->
+                        <form id="parentsform">
+                            <div class="card-body">
+                                <h5>Father</h5>
+                                <div class="form-group">
+                                    <label>Name : </label>
+                                    <input type="text" class="form-control" placeholder="Enter your father's name here "
+                                           id="fathersname">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Job : </label>
+                                    <input type="text" class="form-control" placeholder="Enter your father's job here "
+                                           id="fathersjob">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Phone Number : </label>
+                                    <input type="text" class="form-control" placeholder="Enter your father's phone number here "
+                                           id="fathersphonenumber">
+                                </div>
+
+                                </br>
+                                <h5>Mother</h5>
+                                <div class="form-group">
+                                    <label>Name : </label>
+                                    <input type="text" class="form-control" placeholder="Enter your mother's name here "
+                                           id="mothersname">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Job : </label>
+                                    <input type="text" class="form-control" placeholder="Enter your mother's job here"
+                                           id="mothersjob">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Phone Number : </label>
+                                    <input type="text" class="form-control" placeholder="Enter your mother's phone number here "
+                                           id="mothersphonenumber">
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </form>
+                    </div>
+
+                </div>
+
+                <!-- card-->
+                <div class="card-footer">
+                    <input type="submit" class="btn btn-primary" id="button" value="Submit">
+                </div>
+                <!-- /.card -->
+
+            </div>
+            <!-- /.row -->
+
+            </br>
+            </br>
+            </br>
+            <h2>Information Submitted</h2>
+            </br>
+            <!-- Tabel -->
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap" id="resulttable">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Birth Date</th>
+                        <th>Gender</th>
+                        <th>Address</th>
+                        <th>Religion</th>
+                        <th>Status</th>
+                        <th>Email</th>
+                        <th>Father's Name</th>
+                        <th>Father's Job</th>
+                        <th>Father's Phone Number</th>
+                        <th>Mother's Name</th>
+                        <th>Mother's Job</th>
+                        <th>Mother's Phone Number</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+
+        </div><!-- /.container-fluid -->
+    </section>
+</div>
+
+!-- /.row -->
+<th:block layout:fragment="add-scripts">
+    <script th:src="@{/assets/plugins/chart.js/Chart.min.js}"></script>
+    <script th:src="@{/assets/dist/js/demo.js}"></script>
+    <script th:src="@{/assets/dist/js/pages/dashboard3.js}"></script>
+    <script>
+        $('#button').click(function () {
+            var name = $('#myname').val();
+            var birthdate = $('#mybirthdate').val();
+            var gender = $('input[name="customRadio"]:checked').val();
+            var address = $('#myaddress').val();
+            var religion = $('#myreligion').val();
+            var status = $('#mystatus').val();
+            var email = $('#myemail').val();
+
+            var fathersname = $('#fathersname').val();
+            var fathersjob = $('#fathersjob').val();
+            var fathersphonenumber = $('#fathersphonenumber').val();
+            var mothersname = $('#mothersname').val();
+            var mothersjob = $('#mothersjob').val();
+            var mothersphonenumber = $('#mothersphonenumber').val();
+
+
+            $('#resulttable tbody').append('<td>' + name + '</td>');
+            $('#resulttable tbody').append('<td>' + birthdate + '</td>');
+            $('#resulttable tbody').append('<td>' + gender + '</td>');
+            $('#resulttable tbody').append('<td>' + address + '</td>');
+            $('#resulttable tbody').append('<td>' + religion + '</td>');
+            $('#resulttable tbody').append('<td>' + status + '</td>');
+            $('#resulttable tbody').append('<td>' + email + '</td>');
+
+            $('#resulttable tbody').append('<td>' + fathersname + '</td>');
+            $('#resulttable tbody').append('<td>' + fathersjob + '</td>');
+            $('#resulttable tbody').append('<td>' + fathersphonenumber + '</td>');
+            $('#resulttable tbody').append('<td>' + mothersname + '</td>');
+            $('#resulttable tbody').append('<td>' + mothersjob + '</td>');
+            $('#resulttable tbody').append('<td>' + mothersphonenumber + '</td>');
+            $('#resulttable tbody').append('<tr>' + '</tr>');
+
+        });
+    </script>
+</th:block>
+
+</html>

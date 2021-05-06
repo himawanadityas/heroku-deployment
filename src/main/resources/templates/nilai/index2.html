@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html layout:decorate="~{base}"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+
+<div class="row mb-2" layout:fragment="content-header">
+    <div class="col-sm-6">
+        <h1 class="m-0 text-dark">Nilai</h1>
+    </div>
+    <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Nilai</a></li>
+            <li class="breadcrumb-item active">Kelola</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row" layout:fragment="content-body">
+
+
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="form-group">
+                    <form id="form" role="form">
+                        <label>Nama Mahasiswa: </label>
+                        <select id="mahasiswa" name="idMahasiswa" class="form-control">
+                        </select>
+                    </form>
+                </div>
+                <h4 id="deskripsi"></h4>
+                <div class="float-left">
+                    <button class="btn btn-light btn-outline-secondary" id="btn-cari-nilai">Cari Nilai</button>
+                </div>
+
+                <div class="float-right">
+                    <a href="/nilai">
+                        <button class="btn btn-light btn-outline-success" id="btn-tambah-nilai">Tambah Nilai</button></a>
+                </div>
+
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive">
+                <table class="table table-striped table-hover nowrap" id="table-nilai"
+                       style="width:100%">
+                    <thead class="thead-dark">
+                    <th>Ujian</th>
+                    <th>Nilai</th>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.col --></div>
+
+ <div class="modal fade" id="delete-nilai">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete Confirmation</h4>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div><span>Are you sure to deleteing this ?</span></div>
+
+            </div>
+
+            <div class="modal-footer justify-content-between">
+                <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+                <button class="btn btn-danger" id="btn-delete-nilai" type="button">Delete</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="modal-nilai-kosong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Peringatan!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Nilai Belum Masuk !
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+<th:block layout:fragment="add-scripts">
+    <script th:src="@{/assets/js/parsley.min.js}"></script>
+    <script th:src="@{/assets/js/default.js}"></script>
+
+
+    <script>
+        $.ajax({
+            url: 'api/mahasiswa',
+            method: 'get',
+            contentType: 'application/json',
+            success: function (data, status, xhr) {
+                console.log(xhr.status);
+                if (xhr.status == 200 || xhr.status == 201) {
+                    var dat;
+                    for (var i = 0; i < data.length; i++) {
+                        dat += "<option value='" + data[i].id + "'>" + data[i].nama + "</option>";
+                    }
+                    $('#mahasiswa').append(dat);
+                }
+            }
+        });
+    </script>
+
+
+    <script>
+       $("#btn-cari-nilai").click(function(){
+            var table = document.getElementById('table-nilai').getElementsByTagName('tbody')[0];
+            table.innerHTML = "";
+            var idMhs = $("#mahasiswa option:selected").val();
+
+            $.ajax({
+                url: 'api/nilai/mhs/' + idMhs,
+                method: 'get',
+                contentType: 'application/json',
+                success: function (data, status, xhr) {
+                    console.log(data.length);
+                    if (xhr.status == 200 || xhr.status == 201) {
+                        if(data.length > 0) {
+                            for (var i = 0; i < data.length; i++) {
+                                $("#table-nilai tbody").append('<td>' + data[i].ujian.namaUjian + '</td>');
+                                $("#table-nilai tbody").append('<td>' + data[i].nilai + '</td>');
+                                $("#table-nilai tbody").append('<tr>' + '</tr>');
+                            }
+                        }
+                        else{
+                            $("#table-nilai tbody").append('<td>Nilai Belum Masuk</td>');
+                            $("#table-nilai tbody").append('<td>Nilai Belum Masuk</td>');
+                            $("#table-nilai tbody").append('<tr>' + '</tr>');
+                        }
+                    }
+                }
+            })
+   })
+
+    </script>
+
+
+</th:block>
+
+</html>
+
+
