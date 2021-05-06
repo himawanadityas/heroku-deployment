@@ -34,7 +34,14 @@ public class ApiMahasiswa {
                         .collect(Collectors.toList());
         return mahasiswaDto;
     }
-
+    @GetMapping("/maha")
+    public MahasiswaDto getAllMaha(){
+        MahasiswaDto mahasiswaDto = new MahasiswaDto();
+        mahasiswaDto.setId(1);
+        mahasiswaDto.setJurusan("TI");
+        mahasiswaDto.setAgama("Islam");
+        return mahasiswaDto;
+    }
     @GetMapping("/{id}")
     public MahasiswaDto getMahasiswa(@PathVariable Integer id) {
 
