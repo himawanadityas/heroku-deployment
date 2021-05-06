@@ -45,10 +45,10 @@ public class ApiMahasiswa {
 
     }
 
-    @PostMapping("/maha")
+    @PostMapping("/mahas")
     public Mahasiswa postMaha(@RequestBody MahasiswaDto mahasiswaDto) {
         Mahasiswa mahasiswa = modelMapper.map(mahasiswaDto, Mahasiswa.class);
-        
+
         return mahasiswa;
     }
 
