@@ -9,13 +9,17 @@ import springnew.projectusingthymeleaf.service.MahasiswaService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/mahasiswa")
 public class ApiMahasiswa {
+    private final Logger log = LoggerFactory.getLogger(getClass());
     @Autowired
     private MahasiswaRepository mahasiswaRepository;
 
@@ -37,6 +41,7 @@ public class ApiMahasiswa {
 
     @GetMapping("/maha")
     public MahasiswaDto getAllMaha() {
+        log.info("get mahasiswa name  >>> " + new Date());
         MahasiswaDto mahasiswaDto = new MahasiswaDto();
         mahasiswaDto.setId(1);
         mahasiswaDto.setJurusan("TI");
@@ -48,7 +53,8 @@ public class ApiMahasiswa {
     @PostMapping("/mahas")
     public Mahasiswa postMaha(@RequestBody MahasiswaDto mahasiswaDto) {
         Mahasiswa mahasiswa = modelMapper.map(mahasiswaDto, Mahasiswa.class);
-
+        mahasiswaRepository.save(mahasiswa);
+        log.info("mahasiswa has been saved to database at  "+ new Date());
         return mahasiswa;
     }
 
