@@ -15,18 +15,18 @@ public class Mahasiswa {
     private Integer id;
     private String nama;
     private String alamat;
-
-    @ManyToOne
-    @JoinColumn(name="id_jurusan", updatable = false, insertable = false)
-    private Jurusan jurusan;
-
-    @Column(name="id_jurusan", nullable = false)
-    private Integer idJurusan;
-
-    @ManyToOne
-    @JoinColumn(name="id_agama", updatable = false, insertable = false)
-    private Agama agama;
-
-    @Column(name="id_agama", nullable = false)
-    private Integer idAgama;
+//
+//    @ManyToOne
+//    @JoinColumn(name="id_jurusan", updatable = false, insertable = false)
+//    private Jurusan jurusan;
+//
+//    @Column(name="id_jurusan", nullable = false)
+//    private Integer idJurusan;
+//
+//    @ManyToOne
+//    @JoinColumn(name="id_agama", updatable = false, insertable = false)
+//    private Agama agama;
+//
+//    @Column(name="id_agama", nullable = false)
+//    private Integer idAgama;
 }
