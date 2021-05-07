@@ -19,6 +19,11 @@ public class MahasiswaServiceImpl implements MahasiswaService {
     @Autowired
     private AgamaRepository agamaRepository;
 
+    @Override
+    public Mahasiswa saveService(Mahasiswa mahasiswa) {
+        return null;
+    }
+
 //    @Override
 //    public Biodata latTransactional() {
 //        Biodata biodata = biodataRepository.findById(6).get();
@@ -34,15 +39,15 @@ public class MahasiswaServiceImpl implements MahasiswaService {
 //        return biodata;
 //    }
 
-    @Override
-    public Mahasiswa saveService(Mahasiswa mahasiswa) {
-
-        mahasiswa = mahasiswaRepository.save(mahasiswa);
-        mahasiswa.setJurusan(jurusanRepository.findById(mahasiswa.getIdJurusan()).get()); // mendapatkan nama jurusan
-        mahasiswa.setAgama(agamaRepository.findById(mahasiswa.getIdAgama()).get());
-
-        return mahasiswa;
-    }
+//    @Override
+//    public Mahasiswa saveService(Mahasiswa mahasiswa) {
+//
+//        mahasiswa = mahasiswaRepository.save(mahasiswa);
+//        mahasiswa.setJurusan(jurusanRepository.findById(mahasiswa.getIdJurusan()).get()); // mendapatkan nama jurusan
+//        mahasiswa.setAgama(agamaRepository.findById(mahasiswa.getIdAgama()).get());
+//
+//        return mahasiswa;
+//    }
 
 
 }

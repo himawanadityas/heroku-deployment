@@ -66,8 +66,8 @@ public class ApiMahasiswa {
         MahasiswaDto mahasiswaDto = new MahasiswaDto();
 
         modelMapper.map(mahasiswa, mahasiswaDto); //   modelMapper.map(asal, tujuan);
-        modelMapper.map(mahasiswa.getAgama(), mahasiswaDto);
-        modelMapper.map(mahasiswa.getJurusan(), mahasiswaDto);
+//        modelMapper.map(mahasiswa.getAgama(), mahasiswaDto);
+//        modelMapper.map(mahasiswa.getJurusan(), mahasiswaDto);
 
         mahasiswaDto.setId(mahasiswa.getId());
         return mahasiswaDto;
@@ -79,24 +79,24 @@ public class ApiMahasiswa {
 
         Mahasiswa mahasiswa = modelMapper.map(mahasiswaDto, Mahasiswa.class);
 
-        mahasiswa.setIdAgama(mahasiswaDto.getIdAgama());
-        mahasiswa.setIdJurusan(mahasiswaDto.getIdJurusan());
+//        mahasiswa.setIdAgama(mahasiswaDto.getIdAgama());
+//        mahasiswa.setIdJurusan(mahasiswaDto.getIdJurusan());
 
         //mahasiswa = mahasiswaService.saveService(mahasiswa); //tambahan
-
-        MahasiswaDto mahasiswaDtoDB = mapMahasiswaToMahasiswaDto(mahasiswaService.saveService(mahasiswa));
-
-        return mahasiswaDtoDB;
+//
+//        MahasiswaDto mahasiswaDtoDB = mapMahasiswaToMahasiswaDto(mahasiswaService.saveService(mahasiswa));
+//
+        return mahasiswaDto;
     }
 
     private MahasiswaDto mapMahasiswaToMahasiswaDto(Mahasiswa mahasiswa) {
 
         MahasiswaDto mahasiswaDto = modelMapper.map(mahasiswa, MahasiswaDto.class);
 
-        mahasiswaDto.setIdAgama(mahasiswa.getAgama().getId());
-        mahasiswaDto.setIdJurusan(mahasiswa.getJurusan().getId());
-        mahasiswaDto.setAgama(mahasiswa.getAgama().getAgama());
-        mahasiswaDto.setJurusan(mahasiswa.getJurusan().getJurusan());
+//        mahasiswaDto.setIdAgama(mahasiswa.getAgama().getId());
+//        mahasiswaDto.setIdJurusan(mahasiswa.getJurusan().getId());
+//        mahasiswaDto.setAgama(mahasiswa.getAgama().getAgama());
+//        mahasiswaDto.setJurusan(mahasiswa.getJurusan().getJurusan());
 
         mahasiswaDto.setId(mahasiswa.getId());
 
